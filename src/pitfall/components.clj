@@ -18,5 +18,7 @@
 (defn system-map
   [env]
   (case env
-    :test (test-system env)
+    :prod (test-system :base)
+    :test (test-system :test)
+    :dev (test-system :dev)
     (base env)))
