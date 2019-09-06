@@ -18,7 +18,7 @@
 (defn handle-request
   [_]
   {:status 200
-   :body   {:hello "world"}})
+   :body   {:hello "BIZZNISS"}})
 
 (def routes
   (route/expand-routes
@@ -29,6 +29,7 @@
                            interceptors.schema/coerce-output]
 
        {:get [:handle-request handle-request]}
+
        ["/healthz" {:get [:get-health get-health]}]
 
        ["/api"
