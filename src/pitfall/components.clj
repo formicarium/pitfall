@@ -7,7 +7,7 @@
 
 (defn base [env]
   {:config   (components.config/new-config (str (name env) ".edn"))
-   :webapp   (component/using (components.webapp/new-webapp) [:config :config-server :k8s-client])
+   :webapp   (component/using (components.webapp/new-webapp) [:config])
    :pedestal (component/using (components.pedestal/new-pedestal #'routes/routes) [:config :webapp])})
 
 (defn test-system [env]

@@ -16,4 +16,4 @@
                                       [nubank/selvage "0.0.1"]]}
              :uberjar {:aot [pitfall.server]}}
 
-  :main ^{:skip-aot true} soil.server)
+  :main ^{:skip-aot true} pitfall.server)
