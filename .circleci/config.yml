@@ -2,7 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-clojure/ for more details
 #
-version: 2
+version: 2.1
 jobs:
   test:
     docker:
@@ -57,7 +57,7 @@ jobs:
             docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASSWORD
             ./push.sh
 workflows:
-  version: 2
+  version: 2.1
   pitfall_workflow:
     jobs:
       - test
@@ -70,6 +70,7 @@ workflows:
             branches:
               only: master
       - publish:
+          context: formicarium-services
           requires:
             - build
           filters:
