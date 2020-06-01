@@ -2,7 +2,7 @@
 
 set -eou pipefail
 
-version=$(cat ./resources/base.edn | grep  ':version .*"[0-9\.]*"' | grep -oEi '[0-9]+\.[0-9]+\.[0-9]+')
+version=$(cat ./resources/base.edn | grep ':version[ ]*"[0-9\.]*' | cut -d\" -f2)
 docker build -t pitfall:${version} .
 docker tag pitfall:${version} formicarium/pitfall:${version}
 docker tag pitfall:${version} formicarium/pitfall:latest
