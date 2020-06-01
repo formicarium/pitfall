@@ -1,6 +1,7 @@
 (ns pitfall.routes
   (:require [io.pedestal.http.route :as route]
             [pitfall.config :as config]
+            [clojure.pprint :as pprint]
             [clj-service.pedestal.interceptors.adapt :as interceptors.adapt]
             [clj-service.pedestal.interceptors.schema :as interceptors.schema]
             [clj-service.pedestal.interceptors.error :as interceptors.error]
@@ -16,7 +17,8 @@
    :body   {:version (config/version config)}})
 
 (defn handle-request
-  [_]
+  [context]
+  (pprint/pprint (:request context))
   {:status 200
    :body   {:hello "BIZZNISS"}})
 
