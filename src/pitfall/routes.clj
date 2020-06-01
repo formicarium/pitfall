@@ -18,7 +18,7 @@
 
 (defn handle-request
   [context]
-  (pprint/pprint (:request context))
+  (pprint/pprint context)
   {:status 200
    :body   {:hello "BIZZNISS"}})
 
