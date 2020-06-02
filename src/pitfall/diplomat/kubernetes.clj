@@ -38,10 +38,16 @@
   (log/info :tap x)
   x)
 
+(defn build-config-map
+  [old-config-map new-data]
+  {:api-version (:apiVersion old-config-map)
+   :metadata (select-keys (:metadata old-config-map) [:labels :annotations])
+   :data (merge (:data old-config-map) new-data)})
+
 (defn patch-mocks
   [devspace data components]
   (-> (get-mocks-config-map devspace components)
-      (update :data #(merge % data))
+      (build-config-map data)
       adapters.mocks/externalize-mocks-config-map
       tap
       (update-mocks-config-map devspace components)))
