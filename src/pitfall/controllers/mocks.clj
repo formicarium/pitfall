@@ -3,8 +3,8 @@
             [pitfall.logic.mock :as logic.mock]))
 
 (defn get-mocks
-  [devspace {:keys [kubernetes]}]
-  (diplomat.kubernetes/get-mocks devspace))
+  [devspace components]
+  (diplomat.kubernetes/get-mocks devspace components))
 
 (defn mock
   [{:keys [method route service devspace]}]
