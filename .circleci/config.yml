@@ -61,10 +61,10 @@ workflows:
   pitfall_workflow:
     jobs:
       - test
-      - check-version
+#      - check-version
       - build:
           requires:
-            - check-version
+#            - check-version
             - test
 #         filters:
 #           branches:
