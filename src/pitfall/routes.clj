@@ -26,9 +26,9 @@
    :body   {:hello "BIZZNISS"}})
 
 (defn get-mocks
-  [{:keys [server-name components] :as context}]
+  [{:keys [path-params components] :as context}]
   {:status 200
-   :body (controllers.mocks/get-mocks (:devspace (logic.mock/hostname-info server-name))
+   :body (controllers.mocks/get-mocks (:devspace path-params)
                                       components)})
 
 (defn catch-all [{:keys [uri request-method server-name components] :as context}]
@@ -49,5 +49,5 @@
                             interceptors.schema/coerce-output]
         {:get [:handle-request handle-request]}
         ["/formicarium/api/version" {:get [:get-version get-version]}]
-        ["/formicarium/mocks" {:get [:get-mocks get-mocks]}]
+        ["/formicarium/mocks/:devspace" {:get [:get-mocks get-mocks]}]
         ["/*path" {:any [:catch-all catch-all]}]]]]))
