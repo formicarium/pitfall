@@ -42,6 +42,8 @@
 
 (defn patch-mocks
   [{:keys [path-params json-params components] :as context}]
+  (log/info :context context)
+  (log/info :json json-params)
   {:status 200
    :body (controllers.mocks/patch-mocks (:devspace path-params) json-params components)})
 
