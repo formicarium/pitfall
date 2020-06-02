@@ -5,7 +5,8 @@
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.10.1"]
-                 [leoiacovini/clj-service "1.3.0"]]
+                 [nubank/k8s-api "0.1.0"]
+                 [leoiacovini/clj-service "1.3.1"]]
 
   :profiles {:dev     {:aliases      {"run-dev" ["trampoline" "run" "-m" "pitfall.server/run-dev"]}
                        :plugins      [[lein-midje "3.2.1"]]
