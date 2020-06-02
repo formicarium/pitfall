@@ -30,7 +30,7 @@
                                      :action :update
                                      :request {:name      config-map-name
                                                :namespace devspace
-                                               :request   config-map}})]
+                                               :body   config-map}})]
     (log/info :config-map config-map)
     config-map))
 
@@ -42,8 +42,8 @@
   [old-config-map new-data]
   {:api-version (:apiVersion old-config-map)
    :kind        (:kind old-config-map)
-   :metadata (select-keys (:metadata old-config-map) [:labels :annotations])
-   :data (merge (:data old-config-map) new-data)})
+   :metadata (select-keys (:metadata old-config-map) [:labels :name :annotations])
+   :data     (merge (:data old-config-map) new-data)})
 
 (defn patch-mocks
   [devspace data components]
