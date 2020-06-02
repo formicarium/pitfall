@@ -14,7 +14,7 @@
                                      :action :get
                                      :request {:name      config-map-name
                                                :namespace devspace}})]
-    (log/debug :config-map config-map)
+    (log/info :config-map config-map)
     config-map))
 
 (defn get-mocks [devspace components]
@@ -31,7 +31,7 @@
                                      :request {:name      config-map-name
                                                :namespace devspace
                                                :request   config-map}})]
-    (log/debug :config-map config-map)
+    (log/info :config-map config-map)
     config-map))
 
 (defn patch-mocks
