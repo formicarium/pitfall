@@ -53,15 +53,24 @@
                        {:insecure? true
                         :token-fn (fn [& _] (string/trim (slurp "/var/run/secrets/kubernetes.io/serviceaccount/token")))}))
 
-  (def k8s (k8s/client "http://localhost:9000"
-                       {:insecure? true}))
+  (def k8s (k8s/client "http://localhost:9000" {:insecure? true}))
 
 
   (k8s/info k8s {:kind :ConfigMap
-                 :action :get})
-
+                 :action :patch})
 
   (require '[cheshire.core :as json])
+
+  (->> (k8s/invoke k8s {:kind :ConfigMap
+                        :action :patch
+                        :request {:name "fmc-mocks"
+                                  :namespace "default"
+                                  :body [{:op "replace"
+                                          :path "/data/wololo"
+                                          :value (json/generate-string {:mocks []})}]}})
+
+       meta
+       )
 
   (->> (k8s/invoke k8s {:kind :ConfigMap
                         :action :get

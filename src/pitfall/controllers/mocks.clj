@@ -6,6 +6,10 @@
   [devspace components]
   (diplomat.kubernetes/get-mocks devspace components))
 
+(defn patch-mocks
+  [devspace data components]
+  (diplomat.kubernetes/patch-mocks devspace data components))
+
 (defn mock
   [{:keys [method route service devspace]} components]
   (logic.mock/find-mock
