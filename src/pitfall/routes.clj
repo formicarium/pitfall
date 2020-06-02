@@ -31,13 +31,14 @@
    :body (controllers.mocks/get-mocks (:devspace (logic.mock/hostname-info server-name))
                                       components)})
 
-(defn catch-all [{:keys [uri request-method server-name] :as context}]
+(defn catch-all [{:keys [uri request-method server-name components] :as context}]
   (pprint/pprint context)
   (:response
    (controllers.mocks/mock
      (merge {:method (name request-method)
              :route uri}
-            (logic.mock/hostname-info server-name)))))
+            (logic.mock/hostname-info server-name))
+     components)))
 
 (def routes
   (route/expand-routes
