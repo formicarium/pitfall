@@ -41,6 +41,7 @@
 (defn build-config-map
   [old-config-map new-data]
   {:api-version (:apiVersion old-config-map)
+   :kind        (:kind old-config-map)
    :metadata (select-keys (:metadata old-config-map) [:labels :annotations])
    :data (merge (:data old-config-map) new-data)})
 
