@@ -7,8 +7,8 @@
   (diplomat.kubernetes/get-mocks devspace components))
 
 (defn mock
-  [{:keys [method route service devspace]}]
+  [{:keys [method route service devspace]} components]
   (logic.mock/find-mock
-    ((keyword service) (diplomat.kubernetes/get-mocks devspace))
+    ((keyword service) (diplomat.kubernetes/get-mocks devspace components))
     {:method method
      :route route}))
