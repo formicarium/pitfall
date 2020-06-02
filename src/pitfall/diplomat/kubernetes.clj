@@ -34,9 +34,14 @@
     (log/info :config-map config-map)
     config-map))
 
+(defn tap [x]
+  (log/info :tap x)
+  x)
+
 (defn patch-mocks
   [devspace data components]
   (-> (get-mocks-config-map devspace components)
       (update :data #(merge % data))
       adapters.mocks/externalize-mocks-config-map
+      tap
       (update-mocks-config-map devspace components)))
